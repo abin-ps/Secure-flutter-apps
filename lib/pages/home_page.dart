@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:secure_flutter_apps/routes/routes.dart';
+import 'package:secure_flutter_apps/widgets/nav_tile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,6 +11,8 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           //pages
+          //1. Securing API Keys
+          NavigationTile(route: RouterConfigs.securingAPIKeysExample, label: "Securing API Keys"),
         ],
       ),
     );

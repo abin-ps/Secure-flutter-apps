@@ -7,11 +7,14 @@ class NavigationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        Navigator.pushNamed(context, route);
-      },
-      title: Text(label),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: ListTile(
+        onTap: () {
+          Navigator.pushNamed(context, route);
+        },
+        title: Text(label),
+      ),
     );
   }
 }
