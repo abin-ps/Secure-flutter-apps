@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:secure_flutter_apps/pages/home_page.dart';
 
-import '../examples/securing_api_keys_example.dart';
+import '../examples/securing_api_keys/securing_api_keys_example.dart';
 
 class RouterConfigs {
   static const String homePage = "/";
