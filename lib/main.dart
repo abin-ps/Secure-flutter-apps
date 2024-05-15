@@ -17,7 +17,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        textTheme: const TextTheme(bodyMedium: TextStyle(fontSize: 18, color: Colors.white)),
+        textTheme: const TextTheme(
+          titleMedium: TextStyle(fontSize: 20, color: Colors.white),
+          bodyMedium: TextStyle(fontSize: 18, color: Colors.white),
+        ),
         useMaterial3: true,
       ),
       initialRoute: RouterConfigs.homePage,
