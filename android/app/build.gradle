@@ -60,7 +60,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         manifestPlaceholders = [
-            applicationName: "Securing Flutter Apps",
+            applicationName: "secure_flutter_apps",
             mapsApiKey: env["GOOGLE_MAP_API_KEY"]
         ]
     }
