@@ -84,7 +84,7 @@ task loadEnv{
 ##### `android/app/build.gradle`
 ```groovy
 manifestPlaceholders = [
-	applicationName: "Securing Flutter Apps", //optional - only if AndroidManifest file needs.
+	applicationName: "android.app.Application", //must required - if AndroidManifest file has `android:name="${applicationName}"`.
 	mapsApiKey: env["GOOGLE_MAP_API_KEY"] //this way we can pass API keys to Manifest file
 ]
 ```
