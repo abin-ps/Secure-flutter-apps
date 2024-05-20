@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_dotenv: ^5.1.0 # for securing api keys
+  flutter_secure_storage: ^9.2.1 # for storing user credentials on the device itself
 
   cupertino_icons: ^1.0.6
 
