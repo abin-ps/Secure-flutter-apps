@@ -8,25 +8,39 @@ class SecureStorage {
   final String _keyUserName = "username";
   final String _keyInterests = "interests";
 
-  Future<void> storeUserName(String value) async {
-    await _secureStorage.write(key: _keyUserName, value: value);
+  Future<bool> storeUserName(String value) async {
+    //if already stored something return false without storing.
+    return retreiveUserName().then((v) async {
+      if (v.isEmpty) {
+        await _secureStorage.write(key: _keyUserName, value: value);
+        return true;
+      }
+      return false;
+    });
   }
 
-  Future<void> storeInterests(List<String> interests) async {
-    final String value = json.encode(interests);
-    await _secureStorage.write(key: _keyInterests, value: value);
+  Future<bool> storeInterests(List<String> interests) async {
+    //if already stored something return false without storing.
+    return retreiveInterests().then((v) async {
+      if (v.isEmpty) {
+        final String value = json.encode(interests);
+        await _secureStorage.write(key: _keyInterests, value: value);
+        return true;
+      }
+      return false;
+    });
   }
 
   Future<String> retreiveUserName() async {
-    return (await _secureStorage.read(key: _keyUserName) ?? "No Data Found");
+    return (await _secureStorage.read(key: _keyUserName) ?? "");
   }
 
   Future<List<String>> retreiveInterests() async {
     final value = await _secureStorage.read(key: _keyInterests);
-    return value==null? []: List<String>.from(json.decode(value));
+    return value == null ? [] : List<String>.from(json.decode(value));
   }
 
-  Future<void> deleteAllData() async{
+  Future<void> deleteAllData() async {
     await _secureStorage.deleteAll();
   }
 }

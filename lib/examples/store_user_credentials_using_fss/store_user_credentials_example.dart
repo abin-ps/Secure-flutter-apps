@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:choice/inline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:secure_flutter_apps/examples/store_user_credentials_using_fss/secure_storage.dart';
 
 class StoreUserCredentialsExample extends StatefulWidget {
   const StoreUserCredentialsExample({super.key});
@@ -10,8 +13,11 @@ class StoreUserCredentialsExample extends StatefulWidget {
 }
 
 class _StoreUserCredentialsExampleState extends State<StoreUserCredentialsExample> {
+  //sizing widgets
   final SizedBox _height16 = const SizedBox(height: 16);
   final SizedBox _width4 = const SizedBox(width: 4);
+
+  //field controllers
   late final TextEditingController _userNameController;
   final List<String> _interestsList = [
     "Travel",
@@ -25,14 +31,33 @@ class _StoreUserCredentialsExampleState extends State<StoreUserCredentialsExampl
 
   List<String> _userInterests = [];
 
+  //validations
   bool _isValidUserName = true;
   bool _isValidUserInterest = true;
+
+  //secure storage instance
+  final SecureStorage _secureStorage = SecureStorage();
+
+  //initData
+  Future<(String, List<String>)> getData() async {
+    final String userName = await _secureStorage.retreiveUserName();
+    final List<String> interests = await _secureStorage.retreiveInterests();
+
+    return (userName, interests);
+  }
 
   @override
   void initState() {
     super.initState();
-
     _userNameController = TextEditingController();
+
+    getData().then((value) {
+      _userNameController.text = value.$1;
+      _userInterests = value.$2;
+      if (mounted) {
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -49,17 +74,27 @@ class _StoreUserCredentialsExampleState extends State<StoreUserCredentialsExampl
             //undo button
             IconButton(
                 onPressed: () {
-                  //todo retrieve the data from secure storage
+                  // retrieve the data from secure storage
+                  getData().then((value) {
+                    setState(() {
+                      _userNameController.text = value.$1;
+                      _userInterests = value.$2;
+                    });
+                    _showMaterialBanner(message: "Credentials restored.", bgColor: Colors.blue);
+                  });
                 },
                 icon: Icon(
-                  Icons.undo,
+                  Icons.refresh,
                   size: 24,
                   color: theme.primaryColor,
                 )),
             _width4,
             IconButton(
                 onPressed: () {
-                  //todo delete all the data's from secure storage
+                  // delete all the data's from secure storage
+                  _secureStorage.deleteAllData().then((value) {
+                    _showMaterialBanner(message: "User credentials deleted successfully");
+                  });
                 },
                 icon: const Icon(
                   Icons.delete_forever,
@@ -125,14 +160,19 @@ class _StoreUserCredentialsExampleState extends State<StoreUserCredentialsExampl
 
                   _height16,
                   ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         setState(() {
                           _isValidUserName = _userNameController.text.isNotEmpty;
                           _isValidUserInterest = _userInterests.isNotEmpty;
                         });
                         //validating inputs
                         if (_isValidUserName && _isValidUserInterest) {
-                          //todo store username and interest on secure storage
+                          // store username and interest on secure storage
+                          if (await _secureStorage.storeUserName(_userNameController.text) && await _secureStorage.storeInterests(_userInterests)) {
+                            _showMaterialBanner(message: "User credentials saved.", bgColor: Colors.blue);
+                          } else {
+                            _showMaterialBanner(message: "Delete previous credentials before saving new.", bgColor: Colors.orange);
+                          }
                         }
                       },
                       child: const Text("Save"))
@@ -163,5 +203,27 @@ class _StoreUserCredentialsExampleState extends State<StoreUserCredentialsExampl
               ),
             ))
         : const SizedBox();
+  }
+
+  void _showMaterialBanner({required String message, MaterialColor? bgColor}) {
+    // //clear all material banners
+    // ScaffoldMessenger.of(context).clearMaterialBanners();
+    //custom material banner
+    final MaterialBanner materialBanner = MaterialBanner(
+      backgroundColor: bgColor?.shade300 ?? Colors.red.shade300,
+      content: Text(message),
+      actions: const [Icon(Icons.done)],
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      elevation: 4,
+      shadowColor: bgColor?.shade100 ?? Colors.redAccent.shade100,
+      overflowAlignment: OverflowBarAlignment.center,
+    );
+    //show material banner
+    ScaffoldMessenger.of(context).showMaterialBanner(materialBanner);
+    //clear the banner after 3 seconds
+    Timer(const Duration(seconds: 3), () {
+      ScaffoldMessenger.of(context).clearMaterialBanners();
+    });
   }
 }
