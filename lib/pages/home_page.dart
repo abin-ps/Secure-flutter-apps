@@ -13,6 +13,7 @@ class HomePage extends StatelessWidget {
           //pages
           //1. Securing API Keys
           NavigationTile(route: RouterConfigs.securingAPIKeysExample, label: "Securing API Keys"),
+          NavigationTile(route: RouterConfigs.storeUserCredsExample, label: "Store User Creds Safely"),
         ],
       ),
     );
