@@ -15,7 +15,7 @@ dependencies:
   flutter_secure_storage: ^9.2.1 # for storing user credentials on the device itself
   choice: ^2.3.2 #choice chips used in secure storage example screen to select user interests
   flutter_jailbreak_detection: ^1.10.0 # jailbreak detection
-
+  flutter_exit_app: ^1.1.2 # used in jailbreak detection example to exit app if jailbroken
   cupertino_icons: ^1.0.6
 
 dev_dependencies:
