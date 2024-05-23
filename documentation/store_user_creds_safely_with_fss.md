@@ -56,6 +56,7 @@ class SecureStorage{
 
 
 ## Reference:
+- [Example App](/lib/examples/store_user_credentials_using_fss/store_user_credentials_example.dart)
 - [return multiple values in dart](https://stackoverflow.com/questions/45326310/return-multiple-values-from-function)
 - [choice package reference](https://pub.dev/packages/choice)
 - [flutter_secure_storage package reference](https://pub.dev/packages/flutter_secure_storage)

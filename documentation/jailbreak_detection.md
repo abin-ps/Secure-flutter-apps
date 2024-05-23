@@ -145,6 +145,7 @@ class DeviceInfo {
 
 
 ## Reference:
+- + [Example App](/lib/examples/jail_break_detection/jail_broken_example.dart)
 - [flutter jailbreak detection package reference](https://pub.dev/packages/flutter_jailbreak_detection)
 - [flutter exit app package reference](https://pub.dev/packages/flutter_exit_app)
 - [device info plus flutter jailbreak detection package reference](https://pub.dev/packages/device_info_plus)

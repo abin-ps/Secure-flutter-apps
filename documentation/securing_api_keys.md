@@ -98,6 +98,7 @@ android:value="${mapsApiKey}" />
 - That's all you can now store API KEYS externally and load it if needed.
 
 ## Reference:
++ [Example App](/lib/examples/securing_api_keys/securing_api_keys_example.dart)
 + [Getters and setters in flutter](https://www.cloudhadoop.com/dart-setter-getter-example#:~:text=In%20classes%2C%20Getters%20provide%20an%20access%20to%20read,called%20accessors%2C%20and%20Setters%20are%20known%20as%20Mutators.)
 + [build.gradle basics](https://youtu.be/o0M4f5djJTQ?si=X-M9MlGGNsgiepCK)
 + [create custom task with build.gradle file](https://www.youtube.com/watch?v=2SWgl-OdxDY)
