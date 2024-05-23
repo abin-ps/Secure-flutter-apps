@@ -1,16 +1,13 @@
-# secure_flutter_apps
+# Securing Flutter Apps
 
-A new Flutter project.
+##### This repository will guides to secure flutter apps and complicate the reverse engineering process.
 
-## Getting Started
+## Projects:
+1. [Securing API Keys](documentation/securing_api_keys.md)
+2. [Store user credentials safely with flutter_secure_storage](documentation/store_user_creds_safely_with_fss.md)
+3. [Device JailBroken Detection](documentation/jailbreak_detection.md)
+4. [Obfuscate the app build to complicate reverse engineering](documentation/obfuscation.md)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Reference:
+- [Improve Flutter Application Security](https://www.youtube.com/watch?v=2V90-4O9QOg&t=2s)
