@@ -59,16 +59,18 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        manifestPlaceholders = [
-            applicationName: "android.app.Application",
-            mapsApiKey: env["GOOGLE_MAP_API_KEY"]
-        ]
+        // manifestPlaceholders = [
+        //     applicationName: "android.app.Application",
+        //     mapsApiKey: env["GOOGLE_MAP_API_KEY"]
+        // ]
     }
 
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
+            shrinkResources true //for shrinking app size
+            minifyEnabled true //for obfuscation
             signingConfig signingConfigs.debug
         }
     }
